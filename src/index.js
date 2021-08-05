@@ -1,6 +1,8 @@
 const { join } = require('path');
+const { existsSync } = require('fs');
 
-Cypress.Commands.add('verifyDownload', (fileName, options) => {
+const addCustomCommand = () => {
+  Cypress.Commands.add('verifyDownload', (fileName, options) => {
     Cypress.log({
       name: 'verifyDownload',
       message: `Waiting for the ${fileName} file to be exist`,
@@ -40,4 +42,14 @@ Cypress.Commands.add('verifyDownload', (fileName, options) => {
   return resolveValue().then(isExist => {
       expect(isExist, `The ${fileName} file has been downloaded successfully`).to.be.true;
   })
-})
+  })
+};
+
+const isFileExist = (path) => {
+    return existsSync(path);
+}
+
+module.exports = {
+  isFileExist,
+  addCustomCommand,
+}
