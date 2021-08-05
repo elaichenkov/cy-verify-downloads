@@ -7,8 +7,8 @@
     "index.js",
     "is-file-exist.plugin.js"
   ],
-  "main": "src",
-  "types": "src",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
   "scripts": {
     "cy:open": "npx cypress open",
     "cy:run": "npx cypress run",
