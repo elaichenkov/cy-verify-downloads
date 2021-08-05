@@ -45,7 +45,7 @@ cy.verifyDownload('archive.png', { timeout: 25000, interval: 600 });
 
 ![Autocompletion](./assets/autocompletion.gif?raw=true)
 
-To enable IntelliSense information and autocomplete and have to include types in the `tsconfig.json` file:
+To enable IntelliSense information and autocomplete you have to include types in the `tsconfig.json` file:
 ```json
 {
   "compilerOptions": {
