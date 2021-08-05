@@ -1,9 +1,11 @@
 {
-  "name": "cy-verify-download",
+  "name": "cy-verify-downloads",
   "version": "0.0.1",
   "description": "Cypress custom command to wait and verify that file has been downloaded",
   "files": [
-    "src"
+    "src/index.d.ts",
+    "index.js",
+    "is-file-exist.plugin.js"
   ],
   "main": "src",
   "types": "src",
@@ -20,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/elaichenkov/cy-verify-download.git"
+    "url": "git+https://github.com/elaichenkov/cy-verify-downloads.git"
   },
   "keywords": [
     "cypress",
@@ -32,9 +34,9 @@
   "author": "Yevhen Laichenkov",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/elaichenkov/cy-verify-download/issues"
+    "url": "https://github.com/elaichenkov/cy-verify-downloads/issues"
   },
-  "homepage": "https://github.com/elaichenkov/cy-verify-download#readme",
+  "homepage": "https://github.com/elaichenkov/cy-verify-downloads#readme",
   "devDependencies": {
     "cypress": "^8.2.0",
     "release-it": "^14.10.1",
