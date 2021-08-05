@@ -1,0 +1,34 @@
+{
+  "name": "cy-verify-download",
+  "version": "1.0.0",
+  "description": "Cypress custom command to wait and verify that file has been downloaded",
+  "main": "src",
+  "types": "src",
+  "scripts": {
+    "cy:open": "npx cypress open",
+    "cy:run": "npx cypress run",
+    "start": "npx serve site -l 8039",
+    "test": "npm start & npm run cy:run --browser chrome --headless"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elaichenkov/cy-verify-download.git"
+  },
+  "keywords": [
+    "cypress",
+    "plugins",
+    "command",
+    "wait",
+    "download"
+  ],
+  "author": "Yevhen Laichenkov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/elaichenkov/cy-verify-download/issues"
+  },
+  "homepage": "https://github.com/elaichenkov/cy-verify-download#readme",
+  "devDependencies": {
+    "cypress": "^8.2.0",
+    "serve": "^12.0.0"
+  }
+}
