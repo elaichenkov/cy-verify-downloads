@@ -1,11 +1,9 @@
 {
   "name": "cy-verify-download",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Cypress custom command to wait and verify that file has been downloaded",
   "files": [
-    "src/index.d.ts",
-    "src/index.js",
-    "src/is-file-exist.plugin.js"
+    "src"
   ],
   "main": "src",
   "types": "src",
@@ -13,7 +11,12 @@
     "cy:open": "npx cypress open",
     "cy:run": "npx cypress run",
     "start": "npx serve site -l 8039",
-    "test": "npm start & npm run cy:run --browser chrome --headless"
+    "test": "npm start & npm run cy:run --browser chrome --headless",
+    "release": "release-it --github.release",
+    "release:ci": "npm run release -- --ci --npm.skipChecks --no-git.requireCleanWorkingDir",
+    "release:patch": "npm run release -- patch",
+    "release:minor": "npm run release -- minor",
+    "release:major": "npm run release -- major"
   },
   "repository": {
     "type": "git",
@@ -34,6 +37,7 @@
   "homepage": "https://github.com/elaichenkov/cy-verify-download#readme",
   "devDependencies": {
     "cypress": "^8.2.0",
+    "release-it": "^14.10.1",
     "serve": "^12.0.0"
   }
 }

@@ -36,10 +36,6 @@ jobs:
           git config --global user.email "elaichenkov@gmail.com"
       - name: Install Dependencies
         run: npm ci
-      - name: Build Project
-        run: npm run build
-        env:
-          NODE_ENV: production
       - name: Release
         run: npm run release:ci -- ${{github.event.inputs.releaseType}} --npm.tag=${{github.event.inputs.distTag}}
         env:
