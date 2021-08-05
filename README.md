@@ -50,7 +50,7 @@ To enable IntelliSense information and autocomplete you have to include types in
 ```json
 {
   "compilerOptions": {
-    "types": ["cypress", "cy-verify-downloads"];
+    "types": ["cypress", "cy-verify-downloads"]
   }
 }
 ```
