@@ -1,4 +1,5 @@
 # cy-verify-downloads
+This is a Cypress custom command to wait and to verify that a file has been successfully downloaded.
 
 ## Installation
 
