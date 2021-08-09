@@ -1,4 +1,5 @@
-# cy-verify-downloads
+# cy-verify-downloads ![tests](https://github.com/elaichenkov/cy-verify-downloads/actions/workflows/test.yml/badge.svg)
+
 This is a Cypress custom command to wait and to verify that a file has been successfully downloaded.
 
 ## Installation
