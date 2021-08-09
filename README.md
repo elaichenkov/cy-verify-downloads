@@ -14,7 +14,7 @@ cy-verify-downloads extends Cypress' cy command.
 So, you need to add this line to your project's `cypress/support/commands.js`:
 
 ```javascript
-require('cy-verify-downloads).addCustomCommand();
+require('cy-verify-downloads').addCustomCommand();
 ```
 
 
@@ -36,10 +36,10 @@ Then, in your test, you can use it like this:
 cy.verifyDownload('picture.png');
 
 // or increase timeout
-cy.verifyDownload('archive.png', { timeout: 25000 });
+cy.verifyDownload('archive.zip', { timeout: 25000 });
 
 // or increase timeout and interval pooling
-cy.verifyDownload('archive.png', { timeout: 25000, interval: 600 });
+cy.verifyDownload('archive.zip', { timeout: 25000, interval: 600 });
 ```
 
 ## Types
