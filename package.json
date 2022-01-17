@@ -1,6 +1,6 @@
 {
   "name": "cy-verify-downloads",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Cypress custom command to wait and verify that file has been downloaded",
   "files": [
     "src/index.d.ts",
