@@ -1,4 +1,4 @@
-# cy-verify-downloads ![tests](https://github.com/elaichenkov/cy-verify-downloads/actions/workflows/test.yml/badge.svg)
+# cy-verify-downloads ![tests](https://github.com/elaichenkov/cy-verify-downloads/actions/workflows/test.yml/badge.svg) [![Total npm downloads](https://img.shields.io/npm/dt/cy-verify-downloads.svg)](https://www.npmjs.com/package/cy-verify-downloads)
 
 This is a Cypress custom command to wait and to verify that a file has been successfully downloaded.
 
