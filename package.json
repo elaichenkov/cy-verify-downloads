@@ -3,9 +3,9 @@
   "version": "0.0.6",
   "description": "Cypress custom command to wait and verify that file has been downloaded",
   "files": [
-    "src/index.d.ts",
-    "index.js",
-    "is-file-exist.plugin.js"
+    "src",
+    "plugin.js",
+    "plugin.d.ts"
   ],
   "main": "src/index.js",
   "types": "src/index.d.ts",
