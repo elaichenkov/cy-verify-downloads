@@ -37,7 +37,19 @@ const addCustomCommand = () => {
     return resolveValue().then(isExist => {
       expect(isExist, `The ${fileName} file has been downloaded successfully`).to.be.true;
     })
-  })
+  });
+
+  Cypress.Commands.add('removeDownloads', () => {
+    Cypress.log({
+      name: 'removeDownloads',
+      message: `Waiting for remove downloads directory`,
+    });
+    const downloadsFolder = Cypress.config('downloadsFolder')
+
+    return cy.task('removeDownloads').then(countFiles => {
+      expect(countFiles, `Count of files in a directory ${downloadsFolder} should`).to.equal(0);
+    })
+  });
 };
 
 module.exports = {

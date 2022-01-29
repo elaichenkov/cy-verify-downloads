@@ -11,5 +11,13 @@ declare namespace Cypress {
      *  cy.verifyDownload('filename.zip', { timeout: 20000, interval: 500});
      */
     verifyDownload(fileName: string, options?: { timeout: number; interval: number}): Chainable<boolean>
+
+    /**
+     * Custom command to delete and verify that downloads directory without files
+     * @example
+     *  cy.removeDownloads()
+     */
+    removeDownloads(): Chainable<boolean>
+
   }
 }

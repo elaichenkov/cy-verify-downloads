@@ -3,6 +3,10 @@ describe('verify download functionality', () => {
     cy.visit('/')
   })
 
+  afterEach( () => {
+    cy.removeDownloads();
+  })
+
   it('downloads small file', () => {
     cy.get('[data-cy="small"]').click();
 
