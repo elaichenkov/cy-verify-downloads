@@ -14,4 +14,9 @@ describe('verify download functionality', () => {
 
     cy.verifyDownload('large-file-100MB.zip', { timeout: 55000, interval: 500 });
   })
+
+  it('downloads small file with command', () => {
+    cy.verifyPdfDownload('dummy.pdf');
+  });
+
 })

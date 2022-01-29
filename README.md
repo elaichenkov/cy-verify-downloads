@@ -15,20 +15,24 @@ cy-verify-downloads extends Cypress' cy command.
 So, you need to add this line to your project's `cypress/support/commands.js`:
 
 ```javascript
-require('cy-verify-downloads').addCustomCommand();
+require('cy-verify-downloads');
+```
+
+OR
+
+`cypress/support/commands.ts`:
+
+```typescript
+import 'cy-verify-downloads';
 ```
 
 
-And add the following lines to your project's `cypress/plugins/index.js`:
+And [extend module.exports](https://github.com/cypress-io/cypress/issues/6492#issuecomment-623921258) the following lines to your project's `cypress/plugins/index.js`:
 
 
 ```javascript
-const { isFileExist } = require('cy-verify-downloads');
-
 module.exports = (on, config) => {
-    on('task', {
-        isFileExist
-    })
+    require('cy-verify-downloads/plugin')(on, config);
 }
 ```
 Then, in your test, you can use it like this:
@@ -41,6 +45,19 @@ cy.verifyDownload('archive.zip', { timeout: 25000 });
 
 // or increase timeout and interval pooling
 cy.verifyDownload('archive.zip', { timeout: 25000, interval: 600 });
+
+// or use with another commands
+cy.verifyPdfDownload('test.pdf')
+
+Cypress.Commands.add('verifyPdfDownload',
+  (fileName, options) => {
+    const exportPdfButton = cy.get('[data-cy="pdf"]');
+    exportPdfButton.should('exist');
+    exportPdfButton.click();
+    cy.verifyDownload(fileName, options);
+  }
+);
+
 ```
 
 ## Types

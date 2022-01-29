@@ -1,5 +1,3 @@
-const { isFileExist } = require('../../src/index');
-
 module.exports = (on, config) => {
-  on('task', { isFileExist })
+  require('../../plugin')(on, config);
 }
