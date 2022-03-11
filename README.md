@@ -21,7 +21,7 @@ require('cy-verify-downloads').addCustomCommand();
 And add the following lines to your project's `cypress/plugins/index.js`:
 
 ```javascript
-const { isFileExist } = require('cy-verify-downloads');
+const { isFileExist, findFiles } = require('cy-verify-downloads');
 
 module.exports = (on, config) => {
   on('task', { isFileExist, findFiles })
