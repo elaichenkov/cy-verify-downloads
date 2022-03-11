@@ -1,7 +1,7 @@
 describe('verify download functionality', () => {
   beforeEach(() => {
-    cy.visit('/')
-  })
+    cy.visit('/');
+  });
 
   it('downloads small file', () => {
     cy.get('[data-cy="small"]').click();
@@ -13,5 +13,12 @@ describe('verify download functionality', () => {
     cy.get('[data-cy="large"]').click();
 
     cy.verifyDownload('large-file-100MB.zip', { timeout: 55000, interval: 500 });
-  })
-})
+  });
+
+  it('downloads with contains option', () => {
+    cy.exec(`rm -rf ${Cypress.config('downloadsFolder')}`);
+    cy.get('[data-cy="large"]').click();
+
+    cy.verifyDownload('large-file-100MB', { contains: true });
+  });
+});
