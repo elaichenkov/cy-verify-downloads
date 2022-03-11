@@ -18,23 +18,24 @@ So, you need to add this line to your project's `cypress/support/commands.js`:
 require('cy-verify-downloads').addCustomCommand();
 ```
 
-
 And add the following lines to your project's `cypress/plugins/index.js`:
-
 
 ```javascript
 const { isFileExist } = require('cy-verify-downloads');
 
 module.exports = (on, config) => {
-    on('task', {
-        isFileExist
-    })
+    on('task', { isFileExist, findFiles })
 }
 ```
+
 Then, in your test, you can use it like this:
 
 ```javascript
 cy.verifyDownload('picture.png');
+
+// verify download by file extension or partial filename
+cy.verifyDownload('.png', { contains: true });
+cy.verifyDownload('pic', { contains: true });
 
 // or increase timeout
 cy.verifyDownload('archive.zip', { timeout: 25000 });
@@ -48,6 +49,7 @@ cy.verifyDownload('archive.zip', { timeout: 25000, interval: 600 });
 ![Autocompletion](./assets/autocompletion.gif?raw=true)
 
 To enable IntelliSense information and autocomplete you have to include types in the `tsconfig.json` file:
+
 ```json
 {
   "compilerOptions": {
@@ -57,7 +59,9 @@ To enable IntelliSense information and autocomplete you have to include types in
 ```
 
 ## Author
+
 Yevhen Laichenkov <elaichenkov@gmail.com>
 
 ## License
+
 [MIT](LICENSE)
