@@ -1,5 +1,5 @@
-const { isFileExist } = require('../../src/index');
+const { isFileExist, findFiles } = require('../../src/index');
 
 module.exports = (on, config) => {
-  on('task', { isFileExist })
+  on('task', { isFileExist, findFiles })
 }
