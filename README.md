@@ -24,7 +24,7 @@ And add the following lines to your project's `cypress/plugins/index.js`:
 const { isFileExist } = require('cy-verify-downloads');
 
 module.exports = (on, config) => {
-    on('task', { isFileExist, findFiles })
+  on('task', { isFileExist, findFiles })
 }
 ```
 
