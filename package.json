@@ -39,7 +39,7 @@
   "homepage": "https://github.com/elaichenkov/cy-verify-downloads#readme",
   "devDependencies": {
     "cypress": "^9.2.1",
-    "release-it": "^14.12.3",
+    "release-it": "^15.0.0",
     "serve": "^13.0.2"
   }
 }
