@@ -21,6 +21,7 @@ npm i -D cy-verify-downloads
 This package extends Cypress' `cy` command.
 
 **For Cypress v10+:**
+
 Add this line to your project's `cypress/support/e2e.js`:
 
 ```javascript
@@ -42,6 +43,7 @@ module.exports = defineConfig({
 ```
 
 **For Cypress v9:**
+
 So, you need to add this line to your project's `cypress/support/commands.js`:
 
 ```javascript
