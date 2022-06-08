@@ -16,10 +16,32 @@
 npm i -D cy-verify-downloads
 ```
 
-## Usage
+## Extend Cypress command
 
-cy-verify-downloads extends Cypress' cy command.
+This package extends Cypress' `cy` command.
 
+**For Cypress v10+:**
+Add this line to your project's `cypress/support/e2e.js`:
+
+```javascript
+require('cy-verify-downloads').addCustomCommand();
+```
+
+Then you need to add the following lines of code to your project's `cypress.config.js`:
+
+```javascript
+const { isFileExist, findFiles } = require('cy-verify-downloads');
+
+module.exports = defineConfig({
+  e2e: {
+    setupNodeEvents(on, config) {
+      on('task', { isFileExist, findFiles });
+    },
+  },
+});
+```
+
+**For Cypress v9:**
 So, you need to add this line to your project's `cypress/support/commands.js`:
 
 ```javascript
@@ -35,6 +57,8 @@ module.exports = (on, config) => {
   on('task', { isFileExist, findFiles })
 }
 ```
+
+## Usage
 
 Then, in your test, you can use it like this:
 
