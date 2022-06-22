@@ -29,5 +29,5 @@ jobs:
       uses: cypress-io/github-action@v4
       with:
         browser: ${{ matrix.browser }}
-    - run: echo ">>>>>>" ${{ matrix.browser }}
+        headless: true
     - run: npm test
