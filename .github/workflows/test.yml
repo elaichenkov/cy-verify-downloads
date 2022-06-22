@@ -10,24 +10,16 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    container: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
     strategy:
       matrix:
-        browser: [ chrome, firefox, edge ]
+        node: [ 14, 16, 18 ]
 
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Use Node.js
-      uses: actions/setup-node@v2
+    - uses: actions/checkout@v3
+    - name: Use Node ${{ matrix.node }}
+      uses: actions/setup-node@v3
       with:
-        node-version: '16.14.2'
+        node-version: ${{ matrix.node }}
         cache: 'npm'
     - run: npm ci
-    
-    - name: Cypress run tests in ${{ matrix.browser }}
-      uses: cypress-io/github-action@v4
-      with:
-        browser: ${{ matrix.browser }}
-        headless: true
     - run: npm test
