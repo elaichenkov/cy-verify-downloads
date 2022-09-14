@@ -76,7 +76,12 @@ const findFiles = ({ path, fileName }) => {
 const isDownloaded = (file) => !file.endsWith('.crdownload');
 
 module.exports = {
+  // TODO: deprecate these exports in the next major release
   isFileExist,
   findFiles,
   addCustomCommand,
+  verifyDownloadTasks: {
+    isFileExist,
+    findFiles,
+  },
 };
