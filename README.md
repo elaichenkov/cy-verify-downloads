@@ -31,12 +31,12 @@ require('cy-verify-downloads').addCustomCommand();
 Then you need to add the following lines of code to your project's `cypress.config.js`:
 
 ```javascript
-const { isFileExist, findFiles } = require('cy-verify-downloads');
+const { verifyDownloadTasks } = require('cy-verify-downloads');
 
 module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
-      on('task', { isFileExist, findFiles });
+      on('task', verifyDownloadTasks);
     },
   },
 });
@@ -53,10 +53,10 @@ require('cy-verify-downloads').addCustomCommand();
 And add the following lines to your project's `cypress/plugins/index.js`:
 
 ```javascript
-const { isFileExist, findFiles } = require('cy-verify-downloads');
+const { verifyDownloadTasks } = require('cy-verify-downloads');
 
 module.exports = (on, config) => {
-  on('task', { isFileExist, findFiles })
+  on('task', verifyDownloadTasks)
 }
 ```
 
