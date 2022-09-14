@@ -70,8 +70,10 @@ const isFileExist = (path) => existsSync(path);
 const findFiles = ({ path, fileName }) => {
   if (!existsSync(path)) return null;
 
-  return readdirSync(path).filter((file) => file.includes(fileName));
+  return readdirSync(path).filter((file) => file.includes(fileName) && isDownloaded(file));
 };
+
+const isDownloaded = (file) => !file.endsWith('.crdownload');
 
 module.exports = {
   isFileExist,
