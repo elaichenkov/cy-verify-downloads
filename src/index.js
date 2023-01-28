@@ -38,7 +38,7 @@ const addCustomCommand = () => {
     let retries = Math.floor(timeout / interval);
 
     const checkFile = (result) => {
-      if (result) return result;
+      if (result || notContains) return result;
 
       if (retries < 1) {
         if (contains)
