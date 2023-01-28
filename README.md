@@ -71,6 +71,11 @@ cy.verifyDownload('picture.png');
 cy.verifyDownload('.png', { contains: true });
 cy.verifyDownload('pic', { contains: true });
 
+// verify download not exist by file extension or partial filename
+// if the 'contains' parameter is informed, the 'notContains' parameter is ignored
+cy.verifyDownload('.png', { notCcontains: true });
+cy.verifyDownload('pic', { notContains: true });
+
 // or increase timeout
 cy.verifyDownload('archive.zip', { timeout: 25000 });
 
