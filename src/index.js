@@ -13,12 +13,27 @@ const addCustomCommand = () => {
       timeout: 10000,
       interval: 200,
       contains: false,
+      notContains: false
     };
 
-    const { timeout, interval, contains } = { ...defaultOptions, ...options };
+    const { timeout, interval, contains, notContains } = { ...defaultOptions, ...options };
 
     const downloadsFolder = Cypress.config('downloadsFolder');
     const downloadFileName = join(downloadsFolder, fileName);
+
+    if (interval <= 0 || interval > timeout) {
+      throw new Error(
+        `Interval:${interval} cannot be less than 1 and cannot be less than timeout: ${timeout}.`
+      );
+    }
+
+    if (contains && notContains) {
+      cy.log(
+        `***WARNING!*** Contains and NotContains parameter informed, by default the function prioritizes Contains and disregards the NotContains parameter`
+      );
+
+      notContains = false;
+    }
 
     let retries = Math.floor(timeout / interval);
 
@@ -26,10 +41,14 @@ const addCustomCommand = () => {
       if (result) return result;
 
       if (retries < 1) {
-        throw new Error(
-          `Failed after ${timeout} time out. \nDue to couldn't find ${fileName} file in the ${downloadsFolder} folder`
-        );
+        if (contains)
+          cy.log(
+            `***WARNING!*** Failed after ${timeout} time out. \nDue to couldn't find ${fileName} file in the ${downloadsFolder} folder`
+          );
+
+        return false;
       }
+
       cy.wait(interval, { log: false }).then(() => {
         retries--;
         return resolveValue();
@@ -39,33 +58,40 @@ const addCustomCommand = () => {
     const resolveValue = () => {
       let result;
 
-      if (contains) {
-        result = cy.task('findFiles', { path: downloadsFolder, fileName }).then((files) => {
-          if (files !== null) {
-            if (files.length > 1)
-              cy.log(
-                `**WARNING!** More than one file found for the **'${fileName}'** pattern: [${files}] - the first one **[${files[0]}]** will be used`
+      if (contains || notContains) {
+        result = cy.task('findFiles', { path: downloadsFolder, fileName })
+          .then((files) => {
+            const getTempName = () => `${randomBytes(8)}-temp-file-name-${randomBytes(8)}`;
+            let pathFile;
+
+            if (files == null)
+              throw new Error(
+                `Base path [${downloadsFolder}] to verify download files does not exist.`
               );
 
-            const getTempName = () => `${randomBytes(8)}-temp-file-name-${randomBytes(8)}`;
+            if (files.length > 0) {
+              if (files.length > 1)
+                cy.log(
+                  `***WARNING!*** Found ${files.length} files for query '${fileName}', first [${files[0]}] will be used for validation. List of files: [${files}].`
+                );
 
-            return cy.task('isFileExist', join(downloadsFolder, files[0] || getTempName()));
-          }
-        });
+              pathFile = files[0];
+            }
+
+            return cy.task('isFileExist', { path: join(downloadsFolder, pathFile || getTempName()), notContains });
+          });
       } else {
-        result = cy.task('isFileExist', downloadFileName);
+        result = cy.task('isFileExist', { path: downloadFileName });
       }
 
       return result.then(checkFile);
     };
 
-    return resolveValue().then((isExist) => {
-      expect(isExist, `The ${fileName} file has been downloaded successfully`).to.be.true;
-    });
+    return resolveValue().then((res) => res);
   });
 };
 
-const isFileExist = (path) => existsSync(path);
+const isFileExist = ({ path, notContains = flase }) => !!(existsSync(path) ^ notContains);
 
 const findFiles = ({ path, fileName }) => {
   if (!existsSync(path)) return null;
