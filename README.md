@@ -43,7 +43,8 @@ module.exports = defineConfig({
 ```
 
 **For Cucumber:**
-> Additionally, you may need to install and add node polyfill in your `support/e2e.js` file:
+
+Additionally, you may need to install and add node polyfill in your `support/e2e.js` file:
 
 1. Install the polyfill module:
 
