@@ -64,7 +64,7 @@ module.exports = defineConfig({
   e2e: {
     async setupNodeEvents(on, config) {
       const bundler = createBundler({
-       // add polyfil ⬇ NodeModulesPolyfillPlugin
+       // add polyfill ⬇ NodeModulesPolyfillPlugin
        plugins: [NodeModulesPolyfillPlugin(), createEsbuildPlugin(config)],
       });
     }
