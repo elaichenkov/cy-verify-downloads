@@ -42,6 +42,36 @@ module.exports = defineConfig({
 });
 ```
 
+**For Cucumber:**
+> Additionally, you may need to install and add node polyfill in your `support/e2e.js` file:
+
+1. Install the polyfill module:
+
+```bash
+npm i -D @esbuild-plugins/node-modules-polyfill
+```
+2. Import the following code in your `support/e2e.js` file:
+
+```js
+const { NodeModulesPolyfillPlugin } = require('@esbuild-plugins/node-modules-polyfill');
+```
+
+3. Add the following code in your `plugins` property:
+
+```js
+module.exports = defineConfig({
+  e2e: {
+    async setupNodeEvents(on, config) {
+      const bundler = createBundler({
+       // add polyfil ⬇ NodeModulesPolyfillPlugin
+       plugins: [NodeModulesPolyfillPlugin(), createEsbuildPlugin(config)],
+      });
+    }
+  }
+});
+```
+Moreover, you can take a look at the [comment](https://github.com/elaichenkov/cy-verify-downloads/issues/51#issuecomment-1237978973) with detailed example of adding node polyfill in your config.
+
 **For Cypress v9:**
 
 So, you need to add this line to your project's `cypress/support/commands.js`:
