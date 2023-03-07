@@ -40,13 +40,16 @@ const addCustomCommand = () => {
 
       if (contains) {
         result = cy.task('findFiles', { path: downloadsFolder, fileName }).then((files) => {
+          let isFileExist = false;
           if (files !== null && files[0]) {
             if (files.length > 1)
               cy.log(
                 `**WARNING!** More than one file found for the **'${fileName}'** pattern: [${files}] - the first one **[${files[0]}]** will be used`
               );
-            return cy.task('isFileExist', join(downloadsFolder, files[0]));
+
+            isFileExist = cy.task('isFileExist', join(downloadsFolder, files[0]));
           }
+          return isFileExist;
         });
       } else {
         result = cy.task('isFileExist', downloadFileName);
