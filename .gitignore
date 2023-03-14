@@ -118,7 +118,7 @@ dist
 .pnp.*
 
 # cypress folder
-cypress/downloads
-cypress/fixtures
-cypress/screenshots
-cypress/videos
+cypress/downloads/*
+cypress/fixtures/*
+cypress/screenshots/*
+cypress/videos/*
