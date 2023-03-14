@@ -28,4 +28,18 @@ describe('verify download functionality', () => {
 
     cy.verifyDownload('large-file-100MB.zip', { contains: true });
   });
+
+  it('downloads with not contains option', () => {
+    cy.exec(`rm -rf ${Cypress.config('downloadsFolder')}`);
+    cy.get('[data-cy="large"]').click();
+
+    cy.verifyDownload('small-file-100MB', { notContains: true });
+  });
+
+  it('downloads file with not extension and not contains option', () => {
+    cy.exec(`rm -rf ${Cypress.config('downloadsFolder')}`);
+    cy.get('[data-cy="large"]').click();
+
+    cy.verifyDownload('small-file-100MB.zip', { notContains: true });
+  });
 });
