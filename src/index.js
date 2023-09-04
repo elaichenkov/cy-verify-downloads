@@ -1,6 +1,5 @@
 const { join } = require('path');
 const { existsSync, readdirSync } = require('fs');
-const { randomBytes } = require('crypto');
 
 const addCustomCommand = () => {
   Cypress.Commands.add('verifyDownload', (fileName, options) => {
@@ -41,16 +40,16 @@ const addCustomCommand = () => {
 
       if (contains) {
         result = cy.task('findFiles', { path: downloadsFolder, fileName }).then((files) => {
-          if (files !== null) {
+          let isFileExist = false;
+          if (files !== null && files[0]) {
             if (files.length > 1)
               cy.log(
                 `**WARNING!** More than one file found for the **'${fileName}'** pattern: [${files}] - the first one **[${files[0]}]** will be used`
               );
 
-            const getTempName = () => `${randomBytes(8)}-temp-file-name-${randomBytes(8)}`;
-
-            return cy.task('isFileExist', join(downloadsFolder, files[0] || getTempName()));
+            isFileExist = cy.task('isFileExist', join(downloadsFolder, files[0]));
           }
+          return isFileExist;
         });
       } else {
         result = cy.task('isFileExist', downloadFileName);
