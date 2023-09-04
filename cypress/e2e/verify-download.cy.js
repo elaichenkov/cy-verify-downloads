@@ -15,6 +15,12 @@ describe('verify download functionality', () => {
     cy.verifyDownload('large-file-100MB.zip', { timeout: 55000, interval: 500 });
   });
 
+  it('downloads large file with min file size', () => {
+    const fileSize = 104857600;
+    cy.get('[data-cy="large"]').click();
+    cy.verifyDownload('large-file-100MB.zip', { timeout: 55000, interval: 500,  minFileSize: fileSize-1});
+  });
+
   it('downloads with contains option', () => {
     cy.exec(`rm -rf ${Cypress.config('downloadsFolder')}`);
     cy.get('[data-cy="large"]').click();
