@@ -1,6 +1,6 @@
 {
   "name": "cy-verify-downloads",
-  "version": "0.0.5",
+  "version": "0.1.16",
   "description": "Cypress custom command to wait and verify that file has been downloaded",
   "files": [
     "src/index.d.ts",
@@ -38,8 +38,8 @@
   },
   "homepage": "https://github.com/elaichenkov/cy-verify-downloads#readme",
   "devDependencies": {
-    "cypress": "^8.2.0",
-    "release-it": "^14.10.1",
-    "serve": "^12.0.0"
+    "cypress": "^13.0.0",
+    "release-it": "^16.1.0",
+    "serve": "^14.0.1"
   }
 }
