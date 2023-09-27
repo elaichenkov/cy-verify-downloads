@@ -49,12 +49,12 @@ Additionally, you may need to install and add node polyfill in your `support/e2e
 1. Install the polyfill module:
 
 ```bash
-npm i -D @esbuild-plugins/node-modules-polyfill
+npm i -D esbuild-plugin-polyfill-node
 ```
 2. Import the following code in your `support/e2e.js` file:
 
 ```js
-const { NodeModulesPolyfillPlugin } = require('@esbuild-plugins/node-modules-polyfill');
+const { polyfillNode } = require('esbuild-plugin-polyfill-node');
 ```
 
 3. Add the following code in your `plugins` property:
@@ -64,14 +64,12 @@ module.exports = defineConfig({
   e2e: {
     async setupNodeEvents(on, config) {
       const bundler = createBundler({
-       // add polyfill ⬇ NodeModulesPolyfillPlugin
-       plugins: [NodeModulesPolyfillPlugin(), createEsbuildPlugin(config)],
+        plugins: [polyfillNode({ polyfills: { crypto: true } }), createEsbuildPlugin(config)],
       });
     }
   }
 });
 ```
-Moreover, you can take a look at the [comment](https://github.com/elaichenkov/cy-verify-downloads/issues/51#issuecomment-1237978973) with detailed example of adding node polyfill in your config.
 
 **For Cypress v9:**
 
