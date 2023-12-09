@@ -1,6 +1,6 @@
 declare global {
   namespace Cypress {
-    interface Chainable {
+    interface Chainable<Subject = any> {
       /**
        * Custom command to verify that file has been downloaded
        * @param fileName - string
@@ -21,5 +21,5 @@ declare global {
 export function addCustomCommand(): void;
 export const verifyDownloadTasks: {
   isFileExist: (path: string) => boolean;
-  findFiles: ({ path: string, filename: string }) => string[] | null;
+  findFiles: ({ path, filename }: { path: string, filename: string }) => string[] | null;
 };
