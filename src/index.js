@@ -1,6 +1,9 @@
 const path = require('path');
 const fs = require('fs');
-const crypto = require('crypto');
+
+const getRandomString = (length = 8) =>
+  Array.from({ length }, () => Math.floor(Math.random() * 256)
+    .toString(16).padStart(2, '0')).join('');
 
 const addCustomCommand = () => {
   Cypress.Commands.add('verifyDownload', (fileName, options) => {
@@ -47,7 +50,7 @@ const addCustomCommand = () => {
                 `**WARNING!** More than one file found for the **'${fileName}'** pattern: [${files}] - the first one **[${files[0]}]** will be used`,
               );
 
-            const getTempName = () => `${crypto.randomBytes(8)}-temp-file-name-${crypto.randomBytes(8)}`;
+            const getTempName = () => `${getRandomString()}-temp-file-name-${getRandomString()}`;
 
             return cy.task('isFileExist', path.join(downloadsFolder, files[0] || getTempName()));
           }

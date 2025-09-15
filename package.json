@@ -38,8 +38,8 @@
   },
   "homepage": "https://github.com/elaichenkov/cy-verify-downloads#readme",
   "devDependencies": {
-    "cypress": "^14.0.0",
-    "release-it": "^19.0.1",
-    "serve": "^14.0.1"
+    "cypress": "^15.0.2",
+    "release-it": "^19.0.4",
+    "serve": "^14.2.5"
   }
 }
